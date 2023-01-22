@@ -19,3 +19,11 @@ Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/products/list', [App\Http\Controllers\Api\ProductController::class, 'productList'])->name('products.list');
+Route::get('/cart/list', [App\Http\Controllers\Api\CartController::class, 'cartList'])->name('cart.list');
+Route::post('/cart/store', [App\Http\Controllers\Api\CartController::class, 'addToCart'])->name('cart.store');
+Route::post('/checkout/store', [App\Http\Controllers\Api\CheckoutController::class, 'processToCheckout'])->name('checkout.store');
+Route::get('/order/list', [App\Http\Controllers\Api\CheckoutController::class, 'getOrder'])->name('order.list');
+
+
